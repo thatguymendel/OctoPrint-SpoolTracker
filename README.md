@@ -2,11 +2,12 @@
 
 # THIS PLUGIN WAS MADE COMPLETLY BY AI USE AT YOUR OWN RISK #
 
-A plugin for OctoPrint that helps track and manage 3D printer filament spools. Perfect for farm usage, it automatically tracks filament usage and remaining amount.
+A plugin for OctoPrint that helps track how much filament is left on the currently loaded spool. Perfect for farm usage, it automatically tracks filament usage and remaining amount.
 
 ## Features
 
 - Track filament amount remaining on spools
+- Simple and easy to use sidebar gui
 - Display filament type and color
 - Save and load spool profiles
 - Automatic updates based on G-code analysis
