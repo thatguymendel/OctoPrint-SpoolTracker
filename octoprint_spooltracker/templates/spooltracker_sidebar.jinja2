@@ -1,0 +1,24 @@
+<!-- Sidebar Panel -->
+<div id="sidebar_plugin_spooltracker">
+    <div class="spooltracker-sidebar">
+        <div class="spooltracker-sidebar-content">
+            <div class="spooltracker-sidebar-info">
+                <div class="spooltracker-sidebar-detail">
+                    <span class="spooltracker-sidebar-label">Filament Remaining:</span>
+                    <span class="spooltracker-sidebar-value" data-bind="text: formattedRemaining"></span>
+                </div>
+                <div class="spooltracker-sidebar-detail">
+                    <span class="spooltracker-sidebar-label">Type:</span>
+                    <span class="spooltracker-sidebar-value" data-bind="text: filamentType"></span>
+                </div>
+                <div class="spooltracker-sidebar-detail">
+                    <span class="spooltracker-sidebar-label">Color:</span>
+                    <span class="spooltracker-sidebar-value">
+                        <span class="color-preview" data-bind="style: { backgroundColor: color }"></span>
+                    </span>
+                </div>
+            </div>
+            <button class="btn btn-primary btn-block" data-bind="click: showNewSpoolDialog">Load New Spool</button>
+        </div>
+    </div>
+</div>

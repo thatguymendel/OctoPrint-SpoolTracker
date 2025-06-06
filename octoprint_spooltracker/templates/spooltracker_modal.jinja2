@@ -1,0 +1,72 @@
+<!-- Modal Dialog -->
+<div class="modal fade" id="new_spool_dialog" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Load New Spool</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="new_spool_form">
+                    <div class="form-group">
+                        <label for="spool_capacity_g">Spool Capacity (g)</label>
+                        <input type="number" class="form-control" id="spool_capacity_g" data-bind="value: formSpoolCapacity" required min="0" step="0.1">
+                    </div>
+                    <div class="form-group">
+                        <label for="filament_type">Filament Type</label>
+                        <select class="form-control" id="filament_type" data-bind="value: formFilamentType">
+                            <option value="PLA">PLA</option>
+                            <option value="ABS">ABS</option>
+                            <option value="PETG">PETG</option>
+                            <option value="TPU">TPU</option>
+                            <option value="Nylon">Nylon</option>
+                            <option value="PC">PC</option>
+                            <option value="PVA">PVA</option>
+                            <option value="HIPS">HIPS</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="color">Filament Color</label>
+                        <div class="input-group">
+                            <input type="color" class="form-control" id="color" data-bind="value: formColor">
+                            <div class="input-group-append">
+                                <span class="input-group-text" id="color_preview"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="manufacturer">Manufacturer</label>
+                        <input type="text" class="form-control" id="manufacturer" data-bind="value: formManufacturer">
+                    </div>
+                    <div class="form-group">
+                        <label for="profile_select">Load Profile</label>
+                        <select class="form-control" id="profile_select" data-bind="value: selectedProfile">
+                            <option value="">Select a profile...</option>
+                            <!-- ko foreach: profiles -->
+                            <option data-bind="text: name, value: name"></option>
+                            <!-- /ko -->
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="profile_name">Save as Profile</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="profile_name" data-bind="value: formProfileName" placeholder="Enter profile name">
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary" type="button" data-bind="click: saveProfile">Save</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group" data-bind="visible: profiles().length > 0">
+                        <button type="button" class="btn btn-danger" data-bind="click: deleteProfile">Delete Selected Profile</button>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" id="load_spool_btn" data-bind="click: submitNewSpool">Load Spool</button>
+            </div>
+        </div>
+    </div>
+</div> 
