@@ -1,6 +1,8 @@
 # SpoolTracker
 
-A plugin for OctoPrint that helps track and manage 3D printer filament spools. Perfect for farm usage, it automatically tracks filament usage and remaining amounts.
+# THIS PLUGIN WAS MADE COMPLETLY BY AI USE AT YOUR OWN RISK #
+
+A plugin for OctoPrint that helps track and manage 3D printer filament spools. Perfect for farm usage, it automatically tracks filament usage and remaining amount.
 
 ## Features
 
@@ -9,7 +11,6 @@ A plugin for OctoPrint that helps track and manage 3D printer filament spools. P
 - Save and load spool profiles
 - Automatic updates based on G-code analysis
 - Support for common filament types (PLA, ABS, PETG, etc.)
-- Farm-friendly interface for managing multiple spools
 
 ## Installation
 
@@ -27,11 +28,8 @@ A plugin for OctoPrint that helps track and manage 3D printer filament spools. P
 ## Setup
 
 1. Install the plugin and restart OctoPrint
-2. Add your spools through the SpoolTracker sidebar
-3. Set the current spool you're using
-4. The plugin will automatically track filament usage
-
-## Usage
+2. Add your spool through the SpoolTracker sidebar
+3. The plugin will automatically track filament usage
 
 ### Adding a New Spool
 1. Click "Add Spool" in the SpoolTracker sidebar
@@ -49,7 +47,7 @@ A plugin for OctoPrint that helps track and manage 3D printer filament spools. P
 - You can also manually adjust the amount in the spool settings
 
 ### G-code Integration
-The plugin looks for the following line in your G-code files:
+The plugin looks for the following line at the end of your G-code files:
 ```
 ; filament used [g] = X.XX
 ```
@@ -76,5 +74,5 @@ Contributions are welcome! Here's how you can help:
 
 ## Credits
 
-- Developed by [thatguymendel](https://github.com/thatguymendel)
+- Developed by [thatguymendel](https://github.com/thatguymendel) and cursor
 - Built for the OctoPrint community 
