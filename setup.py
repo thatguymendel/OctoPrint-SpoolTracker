@@ -3,7 +3,7 @@ from setuptools import setup
 plugin_identifier = "spooltracker"
 plugin_package = "octoprint_spooltracker"
 plugin_name = "OctoPrint-SpoolTracker"
-plugin_version = "1.0.0"
+plugin_version = "1.0.8"
 plugin_description = "A simple spool weight tracker for OctoPrint"
 plugin_author = "Your Name"
 plugin_author_email = "your.email@example.com"

@@ -1,16 +1,26 @@
 import octoprint.plugin
 from octoprint.events import Events
 import flask
+from flask import abort, jsonify
+from octoprint.access.permissions import Permissions
+from octoprint.access.groups import USER_GROUP, ADMIN_GROUP
 import logging
 import json
 import re
 import os
 
+# ─────────────────────────────────────────────────────────────
+# Pick the tightest built-ins that fit:
+READ_PERMISSION  = Permissions.CONTROL   # any user allowed to control a print
+WRITE_PERMISSION = Permissions.ADMIN     # only admins may change spools
+# ─────────────────────────────────────────────────────────────
+
 class SpoolTrackerPlugin(octoprint.plugin.SettingsPlugin,
                         octoprint.plugin.EventHandlerPlugin,
                         octoprint.plugin.SimpleApiPlugin,
                         octoprint.plugin.AssetPlugin,
-                        octoprint.plugin.TemplatePlugin):
+                        octoprint.plugin.TemplatePlugin
+                        ):
     
     # Default densities in g/cm³ for common filament types
     FILAMENT_DENSITIES = {
@@ -97,6 +107,8 @@ class SpoolTrackerPlugin(octoprint.plugin.SettingsPlugin,
                 self._logger.error(f"Error processing print completion: {str(e)}")
 
     def on_api_get(self, request):
+        if not READ_PERMISSION.can():
+            abort(403)
         return flask.jsonify(
             remaining_g=self._settings.get_float(["remaining_g"]),
             spool_capacity_g=self._settings.get_float(["spool_capacity_g"]),
@@ -112,6 +124,8 @@ class SpoolTrackerPlugin(octoprint.plugin.SettingsPlugin,
         self._logger.info(f"Command data: {data}")
         
         if command == "load_new_spool":
+            if not WRITE_PERMISSION.can():
+                abort(403)
             try:
                 # Get the new spool data from the nested 'data' field
                 spool_data = data.get("data", {})
@@ -157,6 +171,8 @@ class SpoolTrackerPlugin(octoprint.plugin.SettingsPlugin,
                 return flask.jsonify(error=str(e)), 400
                 
         elif command == "save_profile":
+            if not WRITE_PERMISSION.can():
+                abort(403)
             try:
                 profile_data = data.get("data", {})
                 profile_name = profile_data.get("name", "").strip()
@@ -186,6 +202,8 @@ class SpoolTrackerPlugin(octoprint.plugin.SettingsPlugin,
                 return flask.jsonify(error=str(e)), 400
                 
         elif command == "delete_profile":
+            if not WRITE_PERMISSION.can():
+                abort(403)
             try:
                 profile_name = data.get("data", {}).get("name", "").strip()
                 
@@ -231,6 +249,7 @@ class SpoolTrackerPlugin(octoprint.plugin.SettingsPlugin,
             save_profile=[],
             delete_profile=[]
         )
+
 
 __plugin_name__ = "Spool Tracker"
 __plugin_pythoncompat__ = ">=3.7,<4"
